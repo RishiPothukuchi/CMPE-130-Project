@@ -1,13 +1,9 @@
 #include <iostream>
 #include <string>
-#include "UserList.h"
-#include "UserList.cpp"
-#include "UserListNode.h"
-#include "UserListNode.cpp"
+#include "Hash.cpp"
 using namespace std;
 
 // void passwordMgr();
-//test
 
 int main() {
 
@@ -15,7 +11,7 @@ int main() {
 	int pass_select = 1;
 	string username = "";
 	int PIN = 0;
-	int hashedPIN = 0;
+	int hashed_PIN = 0;
 	bool valid = false;
 	string pass_file;
 
@@ -30,11 +26,13 @@ int main() {
 	cout << "Please enter your PIN" << endl;
 	cin >> PIN; // make catches
 
-		// VERIFY
+	// VERIFY
 		// Hash the pin
+		hash_PIN(PIN);
 		// Verify PIN
 
 	//SELECTION
+	/*
 	if(valid == true){
 		while(pass_select != 0){
 			cout << "Please input the name of your 'Password' file: " << endl;
@@ -44,7 +42,7 @@ int main() {
 			switch(pass_select){
 				case 0: break;
 				case 1: //addpassword
-				case 2: // view/edit
+				case 2: //view/edit
 				case 3: //delete
 			}
 		}
@@ -61,5 +59,6 @@ int main() {
 	List1.login();
 
 	return 0;
+	*/
 }
 
