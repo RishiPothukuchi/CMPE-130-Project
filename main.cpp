@@ -11,25 +11,33 @@ int main() {
 	int pass_select = 1;
 	string username = "";
 	int PIN = 0;
-	int hashed_PIN = 0;
+	string hashed_PIN = "";
 	bool valid = false;
 	string pass_file;
+
+	//Testing values
+	string temp_pass = "amazing123";
+	int temp_PIN = 1234;
+	string temp_web = "google";
 
 	//READ INPUT FILE 
 
 	//LOGIN/VERIFY
-	cout << "Select an option: " << endl << "0 - Exit" << endl << "1 - Login" << endl << "2 - Create new user" << endl;
+	/*cout << "Select an option: " << endl << "0 - Exit" << endl << "1 - Login" << endl << "2 - Create new user" << endl;
 	cin >> login_select; // make catches
 
 	cout << "Please enter your username" << endl;
 	cin >> username; // make catches
 	cout << "Please enter your PIN" << endl;
-	cin >> PIN; // make catches
+	cin >> PIN; // make catches*/
 
 	// VERIFY
 		// Hash the pin
-		hash_PIN(PIN);
+		hashed_PIN = hash_PIN(temp_PIN);
 		// Verify PIN
+		hash_Pass(temp_pass, hashed_PIN);
+
+		hash_Web(temp_web);
 
 	//SELECTION
 	/*

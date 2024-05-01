@@ -3,8 +3,8 @@
 #include <iostream>
 using namespace std;
 
-double hash_PIN(int input);
-double hash_Pass(string pass, int hashed_PIN);
+string hash_PIN(int input);
+string hash_Pass(string pass, string hashed_PIN);
 
 void hash_Userfile(string file);
 void hash_Passfile(string file);
