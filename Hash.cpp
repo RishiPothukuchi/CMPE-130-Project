@@ -12,7 +12,6 @@ string hash_PIN(int input){
     //temp hasing funtion, simply return the function for final iteration
     string temp = "";
     string strPIN = to_string(input);
-    cout << strPIN;
     for (int i = 0; i < strPIN.length(); i++)
     {   
         temp += char((int(strPIN[i]*130) % 94) + 33);
@@ -72,10 +71,10 @@ void hash_Passfile(PassListNode* passHead, string passFileName){
     PassListNode* current = passHead 
     while (current->next != nullptr){
         tempWeb = current->getWeb();
-        hash_Web(tempWeb) // Add hash website function
+        hash_Web(tempWeb); // Add hash website function
         
         tempPass = current->getPass();
-        hash_Pass(tempPass)
+        hash_Pass(tempPass);
 
         ifile << hTempWeb << "," << hTempPass << endl;
     }
@@ -83,3 +82,17 @@ void hash_Passfile(PassListNode* passHead, string passFileName){
     ifile.close();
 }
 */
+
+//temp test for writing to file
+void hash_Passfile(string web, string pass, int PIN, string outputFile){ 
+    ofstream file(outputFile);
+    string hashed_pin = hash_PIN(PIN);
+    string temp_web = "";
+    string temp_pass = "";
+
+    temp_web = hash_Web(web); // Add hash website function
+    temp_pass = hash_Pass(pass, hashed_pin);
+
+    file << temp_web << "," << temp_pass << endl;
+    file.close();
+}

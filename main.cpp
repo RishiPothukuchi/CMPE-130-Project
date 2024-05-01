@@ -16,9 +16,9 @@ int main() {
 	string pass_file;
 
 	//Testing values
-	string temp_pass = "amazing123";
 	int temp_PIN = 1234;
 	string temp_web = "google";
+	string temp_pass = "amazing123";
 
 	//READ INPUT FILE 
 
@@ -33,11 +33,9 @@ int main() {
 
 	// VERIFY
 		// Hash the pin
-		hashed_PIN = hash_PIN(temp_PIN);
 		// Verify PIN
-		hash_Pass(temp_pass, hashed_PIN);
 
-		hash_Web(temp_web);
+		hash_Passfile(temp_web, temp_pass, temp_PIN, "PassTestOutputFile.txt");
 
 	//SELECTION
 	/*
