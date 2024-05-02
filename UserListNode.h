@@ -16,6 +16,7 @@ public:
     UserListNode(int newPIN, string newUsername);
     int getPIN();
     string getUsername();
+    friend void hash_Userfile(UserListNode* head, ifstream file);
 };
 
 #endif

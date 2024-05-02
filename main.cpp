@@ -1,9 +1,6 @@
 #include <iostream>
 #include <string>
-#include "UserList.h"
-#include "UserList.cpp"
-#include "UserListNode.h"
-#include "UserListNode.cpp"
+#include "encrypt.cpp"
 using namespace std;
 
 // void passwordMgr();
@@ -14,26 +11,32 @@ int main() {
 	int pass_select = 1;
 	string username = "";
 	int PIN = 0;
-	int hashedPIN = 0;
+	string hashed_PIN = "";
 	bool valid = false;
 	string pass_file;
+
+	//Testing values
+	int temp_PIN = 1234;
+	string temp_web = "google";
+	string temp_pass = "testing123";
 
 	//READ INPUT FILE 
 
 	//LOGIN/VERIFY
-	cout << "Select an option: " << endl << "0 - Exit" << endl << "1 - Login" << endl << "2 - Create new user" << endl;
+	/*cout << "Select an option: " << endl << "0 - Exit" << endl << "1 - Login" << endl << "2 - Create new user" << endl;
 	cin >> login_select; // make catches
 
 	cout << "Please enter your username" << endl;
 	cin >> username; // make catches
 	cout << "Please enter your PIN" << endl;
-	cin >> PIN; // make catches
+	cin >> PIN; // make catches*/
 
-		// VERIFY
+	// VERIFY
 		// Hash the pin
 		// Verify PIN
 
 	//SELECTION
+	/*
 	if(valid == true){
 		while(pass_select != 0){
 			cout << "Please input the name of your 'Password' file: " << endl;
@@ -43,7 +46,7 @@ int main() {
 			switch(pass_select){
 				case 0: break;
 				case 1: //addpassword
-				case 2: // view/edit
+				case 2: //view/edit
 				case 3: //delete
 			}
 		}
@@ -54,11 +57,10 @@ int main() {
 
 	//ENCODING
 		//Encode "User" File
+		encrypt_Userfile();
 		//Encode "Password" File
-	// passwordMgr();
-	UserList List1;
-	List1.login();
-
+		encrypt_Passfile();
 	return 0;
+	*/
 }
 
