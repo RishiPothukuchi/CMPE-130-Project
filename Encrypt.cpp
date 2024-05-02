@@ -4,11 +4,11 @@
 #include <string>
 //#include <cryptopp/sha.h>
 
-#include "Hash.h"
+#include "Encrypt.h"
 #include "UserListNode.h"
 using namespace std;
 
-string hash_PIN(int input){
+string encrypt_PIN(int input){
     //temp hasing funtion, simply return the function for final iteration
     string temp = "";
     string strPIN = to_string(input);
@@ -21,7 +21,7 @@ string hash_PIN(int input){
     return temp;
 }
 
-string hash_Pass(string pass, string hashed_PIN){
+string encrypt_Pass(string pass, string hashed_PIN){
     int pass_val = 0;
     int count = 0;
     string temp = "";
@@ -36,7 +36,7 @@ string hash_Pass(string pass, string hashed_PIN){
     return temp;
 }
 
-string hash_Web(string web){
+string encrypt_Web(string web){
     string temp = "";
         for (int i = 0; i < web.length(); i++){
         temp += char((((int(web[i]) * 17 )) % 94) + 33);
@@ -47,7 +47,7 @@ string hash_Web(string web){
 }
 
 /*
-void hash_Userfile(UserListNode* userHead, ifstream file){
+void encrypt_Userfile(UserListNode* userHead, ifstream file){
     //read linked list
     UserListNode* current = head;
     while(current->next != nullptr){
@@ -55,7 +55,7 @@ void hash_Userfile(UserListNode* userHead, ifstream file){
     }
 }
 
-void hash_Passfile(PassListNode* passHead, string passFileName){
+void encrypt_Passfile(PassListNode* passHead, string passFileName){
     fstream ifile;
     string tempWeb = "";
     string hTempWeb = "";
@@ -84,14 +84,14 @@ void hash_Passfile(PassListNode* passHead, string passFileName){
 */
 
 //temp test for writing to file
-void hash_Passfile(string web, string pass, int PIN, string outputFile){ 
+void encrypt_Passfile(string web, string pass, int PIN, string outputFile){ 
     ofstream file(outputFile);
-    string hashed_pin = hash_PIN(PIN);
+    string hashed_pin = encrypt_PIN(PIN);
     string temp_web = "";
     string temp_pass = "";
 
-    temp_web = hash_Web(web); // Add hash website function
-    temp_pass = hash_Pass(pass, hashed_pin);
+    temp_web = encrypt_Web(web); // Add hash website function
+    temp_pass = encrypt_Pass(pass, hashed_pin);
 
     file << temp_web << "," << temp_pass << endl;
     file.close();
