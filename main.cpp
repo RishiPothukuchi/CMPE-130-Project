@@ -20,7 +20,7 @@ int main() {
 	string temp_web = "google";
 	string temp_pass = "testing123";
 
-	//READ INPUT FILE Decrypt.h
+	//READ INPUT FILE ReadFile.h
 	//LOGIN/VERIFY Verify.h
 	/*cout << "Select an option: " << endl << "0 - Exit" << endl << "1 - Login" << endl << "2 - Create new user" << endl;
 	cin >> login_select; // make catches
