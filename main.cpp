@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "Hash.cpp"
+#include "encrypt.cpp"
 using namespace std;
 
 // void passwordMgr();
@@ -18,7 +18,7 @@ int main() {
 	//Testing values
 	int temp_PIN = 1234;
 	string temp_web = "google";
-	string temp_pass = "amazing123";
+	string temp_pass = "testing123";
 
 	//READ INPUT FILE 
 
@@ -34,8 +34,6 @@ int main() {
 	// VERIFY
 		// Hash the pin
 		// Verify PIN
-
-		hash_Passfile(temp_web, temp_pass, temp_PIN, "PassTestOutputFile.txt");
 
 	//SELECTION
 	/*
@@ -59,11 +57,9 @@ int main() {
 
 	//ENCODING
 		//Encode "User" File
+		encrypt_Userfile();
 		//Encode "Password" File
-	// passwordMgr();
-	UserList List1;
-	List1.login();
-
+		encrypt_Passfile();
 	return 0;
 	*/
 }
