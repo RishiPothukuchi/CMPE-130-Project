@@ -9,14 +9,16 @@ class UserList{
 private:
     UserListNode *head;
     UserListNode *tail;
+    int *PassArray; // for password dynamic array
+
 
 public:
     UserList();
     void initializeWithFile();
-    void login();
-    void createNewUser();
-    void loginExistingUser();
-    void checkExistingNodes();
+    void createNewUser(string username, int PIN);
+    void deleteUser(string username);
+    //void loginExistingUser(string username, int PIN);
+    //void checkExistingNodes(string username, int PIN);
 
 };
 

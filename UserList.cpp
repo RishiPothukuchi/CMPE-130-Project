@@ -22,47 +22,30 @@ void UserList::initializeWithFile(){
         exit(1); 
     }
 
-    // Code to read and store each row in file 
-    // as a new UserListNode written here
-
     ifile.close();
 }
 
-void UserList::login(){
-    bool validChoice = false;
-    while (validChoice == false){
-        string userStringChoice;
-        cout << "Are you a new or already existing user: " << endl;
-        cout << "- New" << endl;
-        cout << "- Existing" << endl;
-        cout << "Choice: ";
-        cin >> userStringChoice;
+void UserList::createNewUser(string username, int PIN){
+    UserListNode* newNode;
+    newNode->setUsername(username);
+    newNode->setPIN(PIN);
 
-        transform(userStringChoice.begin(), userStringChoice.end(), userStringChoice.begin(), [](unsigned char c){ return std::tolower(c); });
-        userStringChoice[0] = toupper(userStringChoice[0]); 
+    newNode->setPrev(tail);
+    tail->setNext(newNode);
+    tail = newNode;
+    delete tail;
+}
 
-        if(userStringChoice == "New"){
-            validChoice = true;
-            createNewUser();
-        }
-        else if(userStringChoice == "Existing"){
-            validChoice = true;            
-            loginExistingUser();
-        }
-        else{
-            cout << "Invalid Response, Please Try Again" << endl;
-        }
+
+void UserList::deleteUser(string username){
+    UserListNode* current = head;
+
+    while(current->getUsername() != username){
+        current = current->getNext();
     }
-}
 
-void UserList::createNewUser(){
+    current->getPrev()->setNext(current->getNext());
+    current->getNext()->setPrev(current->getPrev());
 
-}
-
-void UserList::loginExistingUser(){
-
-}
-
-void UserList::checkExistingNodes(){
-
+    delete current;
 }

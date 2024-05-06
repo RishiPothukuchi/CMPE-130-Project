@@ -1,5 +1,6 @@
 #include <iostream>
 #include "UserListNode.h"
+#include "Encrypt.h"
 using namespace std;
 
 
@@ -16,4 +17,26 @@ int UserListNode::getPIN(){
 
 string UserListNode::getUsername(){
     return username;
+}
+
+UserListNode* UserListNode::getNext(){
+    return next;
+}
+UserListNode* UserListNode::getPrev(){
+    return previous;
+}
+
+void UserListNode::setPIN(int newPIN){
+    this->PIN = newPIN;
+}
+
+void UserListNode::setUsername(string newUsername){
+    this->username = newUsername;
+}
+
+void UserListNode::setNext(UserListNode* newNext){
+    this->next = newNext;
+}
+void UserListNode::setPrev(UserListNode* newPrev){
+    this->previous = newPrev;
 }

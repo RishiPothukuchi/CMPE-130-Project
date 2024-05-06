@@ -16,6 +16,14 @@ public:
     UserListNode(int newPIN, string newUsername);
     int getPIN();
     string getUsername();
+    UserListNode* getNext();
+    UserListNode* getPrev();
+
+    void setPIN(int PIN);
+    void setUsername(string username);
+    void setNext(UserListNode* newNext);
+    void setPrev(UserListNode* newPrev);
+    
     friend void hash_Userfile(UserListNode* head, ifstream file);
 };
 

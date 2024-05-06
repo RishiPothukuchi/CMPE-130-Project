@@ -25,10 +25,24 @@ int main() {
 	/*cout << "Select an option: " << endl << "0 - Exit" << endl << "1 - Login" << endl << "2 - Create new user" << endl;
 	cin >> login_select; // make catches
 
-	cout << "Please enter your username" << endl;
-	cin >> username; // make catches
-	cout << "Please enter your PIN" << endl;
-	cin >> PIN; // make catches*/
+	switch(login_select){
+		case 0: 
+				cout << "Exiting program" << endl;
+				return 0;
+		case 1:           
+				cout << "Please enter your username" << endl;
+				cin >> username; // make catches
+				cout << "Please enter your PIN" << endl;
+				cin >> PIN; // make catches
+				//VERIFY, set valid == true	
+		case 2: 
+				cout << "Enter a new username for the account: " << endl;
+				cin >> username;
+				cout << "Enter a new pasword for this account"
+				cin >> new
+				createNewUser();
+				// set valid == true
+	}
 
 	//SELECTION Selection.h
 	/*
