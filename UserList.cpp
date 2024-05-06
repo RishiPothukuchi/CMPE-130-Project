@@ -21,6 +21,7 @@ void UserList::initializeWithFile(){
         cout << "File opening failed" << endl;
         exit(1); 
     }
+    //add
 
     ifile.close();
 }
@@ -30,7 +31,7 @@ void UserList::createNewUser(string username, int PIN){
     newNode->setUsername(username);
     newNode->setPIN(PIN);
 
-    newNode->setPrev(tail);
+    newNode->setPrevious(tail);
     tail->setNext(newNode);
     tail = newNode;
     delete tail;
@@ -44,8 +45,8 @@ void UserList::deleteUser(string username){
         current = current->getNext();
     }
 
-    current->getPrev()->setNext(current->getNext());
-    current->getNext()->setPrev(current->getPrev());
+    current->getPrevious()->setNext(current->getNext());
+    current->getNext()->setPrevious(current->getPrevious());
 
     delete current;
 }

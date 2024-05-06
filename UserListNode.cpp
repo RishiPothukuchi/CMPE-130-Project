@@ -22,7 +22,7 @@ string UserListNode::getUsername(){
 UserListNode* UserListNode::getNext(){
     return next;
 }
-UserListNode* UserListNode::getPrev(){
+UserListNode* UserListNode::getPrevious(){
     return previous;
 }
 
@@ -37,6 +37,6 @@ void UserListNode::setUsername(string newUsername){
 void UserListNode::setNext(UserListNode* newNext){
     this->next = newNext;
 }
-void UserListNode::setPrev(UserListNode* newPrev){
-    this->previous = newPrev;
+void UserListNode::setPrevious(UserListNode* newPrevious){
+    this->previous = newPrevious;
 }

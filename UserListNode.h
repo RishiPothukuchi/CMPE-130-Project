@@ -17,13 +17,13 @@ public:
     int getPIN();
     string getUsername();
     UserListNode* getNext();
-    UserListNode* getPrev();
+    UserListNode* getPrevious();
 
     void setPIN(int PIN);
     void setUsername(string username);
     void setNext(UserListNode* newNext);
-    void setPrev(UserListNode* newPrev);
-    
+    void setPrevious(UserListNode* newPrev);
+
     friend void hash_Userfile(UserListNode* head, ifstream file);
 };
 
