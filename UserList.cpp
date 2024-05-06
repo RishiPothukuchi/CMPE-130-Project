@@ -8,35 +8,27 @@ using namespace std;
 UserList::UserList(){
     head = nullptr;
     tail = nullptr;
+    PassArray = nullptr;
 }
 
-void UserList::initializeWithFile(){
-    ifstream ifile;
-    string userFileName;
-    cout << "Enter the file you want to initialize the list of users with: ";
-    cin >> userFileName;
+void UserList::createNewUser(string username, int PIN) {
+    UserListNode* newNode = new UserListNode();
 
-    ifile.open(userFileName);
-    if(ifile.fail()){
-        cout << "File opening failed" << endl;
-        exit(1); 
-    }
-    //add
-
-    ifile.close();
-}
-
-void UserList::createNewUser(string username, int PIN){
-    UserListNode* newNode;
     newNode->setUsername(username);
     newNode->setPIN(PIN);
 
-    newNode->setPrevious(tail);
-    tail->setNext(newNode);
-    tail = newNode;
-    delete tail;
-}
+    if (head == nullptr) {
+        head = newNode;
+        tail = newNode;
+    }
+    else {
+        newNode->setPrevious(tail);
+        tail->setNext(newNode);
+        tail = newNode;
+    }
 
+    cout << "Success" << endl;
+}
 
 void UserList::deleteUser(string username){
     UserListNode* current = head;

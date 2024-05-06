@@ -14,6 +14,7 @@ private:
 
 public:
     UserListNode(int newPIN, string newUsername);
+    UserListNode();
     int getPIN();
     string getUsername();
     UserListNode* getNext();

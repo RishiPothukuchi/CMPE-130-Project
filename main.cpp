@@ -1,9 +1,10 @@
 #include <iostream>
 #include <string>
+#include "encrypt.h"
 #include "encrypt.cpp"
+#include "UserList.h"
+#include "UserList.cpp"
 using namespace std;
-
-// void passwordMgr();
 
 int main() {
 
@@ -18,7 +19,6 @@ int main() {
 	//Testing values
 	int temp_PIN = 1234;
 	string temp_web = "google";
-	string temp_pass = "testing123";
 
 	//READ INPUT FILE ReadFile.h
 	//LOGIN/VERIFY Verify.h
@@ -69,7 +69,7 @@ int main() {
 		encrypt_Userfile();
 		//Encode "Password" File
 		encrypt_Passfile();
-	return 0;
 	*/
+	return 0;
 }
 

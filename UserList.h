@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "UserListNode.h"
+#include "UserListNode.cpp"
 using namespace std;
 
 class UserList{

@@ -38,7 +38,7 @@ string encrypt_Pass(string pass, string hashed_PIN){
 
 string encrypt_Web(string web){
     string temp = "";
-        for (int i = 0; i < web.length(); i++){
+    for (int i = 0; i < web.length(); i++){
         temp += char((((int(web[i]) * 17 )) % 94) + 33);
     }
     cout << "String value: " << web << endl;

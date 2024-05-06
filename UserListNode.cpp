@@ -11,6 +11,13 @@ UserListNode::UserListNode(int newPIN, string newUsername){
     previous = nullptr;
 }
 
+UserListNode::UserListNode(){
+    PIN = NULL;
+    username = "";
+    next = nullptr;
+    previous = nullptr;
+}
+
 int UserListNode::getPIN(){
     return PIN;
 }
