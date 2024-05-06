@@ -11,34 +11,47 @@ UserList::UserList(){
     PassArray = nullptr;
 }
 
-void UserList::createNewUser(string username, int PIN) {
-    UserListNode* newNode = new UserListNode();
 
-    newNode->setUsername(username);
-    newNode->setPIN(PIN);
+void UserList::login(){
+    bool validChoice = false;
+    while (validChoice == false){
+        string userStringChoice;
+        cout << "Are you a new or already existing user: " << endl;
+        cout << "- New" << endl;
+        cout << "- Existing" << endl;
+        cout << "Choice: ";
+        cin >> userStringChoice;
 
-    if (head == nullptr) {
-        head = newNode;
-        tail = newNode;
+        transform(userStringChoice.begin(), userStringChoice.end(), userStringChoice.begin(), [](unsigned char c){ return std::tolower(c); });
+        userStringChoice[0] = toupper(userStringChoice[0]); 
+
+        if(userStringChoice == "New"){
+            validChoice = true;
+            int newPIN;
+            string newUsername;
+            cout << "Please Provide a PIN:";
+            cin >> newPIN;
+            cout << "Please Provide a Username:";
+            cin >> newUsername;
+            createNewUser(newPIN, newUsername);
+        }
+        else if(userStringChoice == "Existing"){
+            validChoice = true;            
+            loginExistingUser();
+        }
+        else{
+            cout << "Invalid Response, Please Try Again" << endl;
+        }
     }
-    else {
-        newNode->setPrevious(tail);
-        tail->setNext(newNode);
-        tail = newNode;
-    }
-
-    cout << "Success" << endl;
 }
 
-void UserList::deleteUser(string username){
-    UserListNode* current = head;
 
-    while(current->getUsername() != username){
-        current = current->getNext();
-    }
 
-    current->getPrevious()->setNext(current->getNext());
-    current->getNext()->setPrevious(current->getPrevious());
 
-    delete current;
+void UserList::loginExistingUser(){
+
+}
+
+void UserList::checkExistingNodes(){
+
 }

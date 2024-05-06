@@ -1,49 +1,65 @@
 #include <iostream>
 #include "UserListNode.h"
-#include "Encrypt.h"
 using namespace std;
-
-
-UserListNode::UserListNode(int newPIN, string newUsername){
-    PIN = newPIN;
-    username = newUsername;
-    next = nullptr;
-    previous = nullptr;
-}
 
 UserListNode::UserListNode(){
     PIN = NULL;
     username = "";
     next = nullptr;
     previous = nullptr;
+    sizeOfList = 20;
+    numOfElements = 0;
+    listOfPasswords = new Password[sizeOfList];
+}
+
+UserListNode::UserListNode(int newPIN, string newUsername){
+    PIN = newPIN;
+    username = newUsername;
+    next = nullptr;
+    previous = nullptr;
+    sizeOfList = 20;
+    numOfElements = 0;
+    listOfPasswords = new Password[sizeOfList];
 }
 
 int UserListNode::getPIN(){
     return PIN;
 }
 
+void UserListNode::setPIN(int newVal){
+	PIN = newVal;
+}
+
 string UserListNode::getUsername(){
     return username;
 }
 
-UserListNode* UserListNode::getNext(){
-    return next;
-}
-UserListNode* UserListNode::getPrevious(){
-    return previous;
-}
-
-void UserListNode::setPIN(int newPIN){
-    this->PIN = newPIN;
-}
-
 void UserListNode::setUsername(string newUsername){
-    this->username = newUsername;
+	username = newUsername;
 }
 
-void UserListNode::setNext(UserListNode* newNext){
-    this->next = newNext;
+
+UserListNode* UserListNode::getNext(){
+	return next;
 }
-void UserListNode::setPrevious(UserListNode* newPrevious){
-    this->previous = newPrevious;
+
+void UserListNode::setNext(UserListNode* nextUser){
+	next = nextUser;
+}
+
+UserListNode* UserListNode::getPrevious(){
+	return previous;
+}
+
+void UserListNode::setPrevious(UserListNode* prevUser){
+	previous = prevUser;
+}
+
+void UserListNode::displayPasswords(){
+	for(int i = 0; i < sizeOfList; i++){
+		if((listOfPasswords[i].getIdentifier() != "") && (listOfPasswords[i].getIdentifier() != "Deleted") && (listOfPasswords[i].getPassword() != "")
+				&& (listOfPasswords[i].getPassword() != "Deleted")){
+			cout << "Website: " << listOfPasswords[i].getIdentifier() << "  =>   Password: " << listOfPasswords[i].getPassword() << endl;
+		}
+	}
 }

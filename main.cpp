@@ -1,48 +1,59 @@
 #include <iostream>
 #include <string>
 #include "encrypt.h"
-#include "encrypt.cpp"
 #include "UserList.h"
-#include "UserList.cpp"
 using namespace std;
 
+// void passwordMgr();
+
 int main() {
+		UserList listOfUsers;
+		listOfUsers.initializeUserFile();
+		bool loop = true;
+		while(loop == true){
+			int userOption;
+			cout << "\nOptions:" << endl;
+			cout << "1. Login" << endl;
+			cout << "2. Exit Program" << endl;
+			cout << "Select an option number: ";
+			cin >> userOption;
+			cout << endl;
+			switch (userOption){
+				case 1:{
+					listOfUsers.login();
+					break;
+				}
 
-	int login_select = 0;
-	int pass_select = 1;
-	string username = "";
-	int PIN = 0;
-	string hashed_PIN = "";
-	bool valid = false;
-	string pass_file;
+				case 2:{
+					loop = false;
+				}
+			}
+		}
+	}
 
-	//Testing values
-	int temp_PIN = 1234;
-	string temp_web = "google";
 
-	//READ INPUT FILE ReadFile.h
+
+
+//int login_select = 0;
+//int pass_select = 1;
+//string username = "";
+//int PIN = 0;
+//string hashed_PIN = "";
+//bool valid = false;
+//string pass_file;
+//
+////Testing values
+//int temp_PIN = 1234;
+//string temp_web = "google";
+//READ INPUT FILE ReadFile.h
 	//LOGIN/VERIFY Verify.h
 	/*cout << "Select an option: " << endl << "0 - Exit" << endl << "1 - Login" << endl << "2 - Create new user" << endl;
 	cin >> login_select; // make catches
 
-	switch(login_select){
-		case 0: 
-				cout << "Exiting program" << endl;
-				return 0;
-		case 1:           
-				cout << "Please enter your username" << endl;
-				cin >> username; // make catches
-				cout << "Please enter your PIN" << endl;
-				cin >> PIN; // make catches
-				//VERIFY, set valid == true	
-		case 2: 
-				cout << "Enter a new username for the account: " << endl;
-				cin >> username;
-				cout << "Enter a new pasword for this account"
-				cin >> new
-				createNewUser();
-				// set valid == true
-	}
+	cout << "Please enter your username" << endl;
+	cin >> username; // make catches
+	cout << "Please enter your PIN" << endl;
+	cin >> PIN; // make catches*/
 
 	//SELECTION Selection.h
 	/*
@@ -69,7 +80,5 @@ int main() {
 		encrypt_Userfile();
 		//Encode "Password" File
 		encrypt_Passfile();
-	*/
 	return 0;
-}
-
+	*/

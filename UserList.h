@@ -3,23 +3,22 @@
 
 #include <iostream>
 #include "UserListNode.h"
-#include "UserListNode.cpp"
 using namespace std;
 
 class UserList{
 private:
     UserListNode *head;
     UserListNode *tail;
-    int *PassArray; // for password dynamic array
-
+    int *PassArray;
 
 public:
     UserList();
-    void initializeWithFile();
-    void createNewUser(string username, int PIN);
+    void initializeUserFile();
+    void login();
     void deleteUser(string username);
-    //void loginExistingUser(string username, int PIN);
-    //void checkExistingNodes(string username, int PIN);
+    void loginExistingUser();
+    void checkExistingNodes();
+    void createNewUser(int PIN, string username);
 
 };
 

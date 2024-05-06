@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include "Password.h"
 using namespace std;
 
 class UserListNode{
@@ -11,21 +12,38 @@ private:
     string username;
     UserListNode *next;
     UserListNode *previous;
+    Password *listOfPasswords;
+    int sizeOfList;
+    int numOfElements;
 
 public:
     UserListNode(int newPIN, string newUsername);
     UserListNode();
-    int getPIN();
-    string getUsername();
-    UserListNode* getNext();
-    UserListNode* getPrevious();
 
-    void setPIN(int PIN);
-    void setUsername(string username);
-    void setNext(UserListNode* newNext);
-    void setPrevious(UserListNode* newPrev);
+    int hashFunction(string password, int loopIdx, int arraySize);
+
+    void initializePasswordFile();
+
+    void addPassword(string password, string identifier);
+    void deletePassword(string password, string identifier);
+
+    int getPIN();
+	void setPIN(int newVal);
+
+    string getUsername();
+    void setUsername(string newUsername);
+
+	UserListNode* getNext();
+	void setNext(UserListNode* nextUser);
+
+	UserListNode* getPrevious();
+	void setPrevious(UserListNode* prevUser);
 
     friend void hash_Userfile(UserListNode* head, ifstream file);
+
+
+	void displayPasswords();
+
 };
 
 #endif
