@@ -9,26 +9,51 @@ using namespace std;
 int main() {
 		UserList listOfUsers;
 		listOfUsers.initializeUserFile();
-		bool loop = true;
-		while(loop == true){
-			int userOption;
-			cout << "\nOptions:" << endl;
-			cout << "1. Login" << endl;
-			cout << "2. Exit Program" << endl;
-			cout << "Select an option number: ";
-			cin >> userOption;
-			cout << endl;
-			switch (userOption){
-				case 1:{
-					listOfUsers.login();
-					break;
-				}
 
-				case 2:{
-					loop = false;
-				}
-			}
-		}
+
+		listOfUsers.displayUsers();
+
+		string userChoice;
+		cout << "Enter someone you want to delete." << endl;
+		cin >> userChoice;
+		listOfUsers.deleteUser(userChoice);
+
+		listOfUsers.displayUsers();
+
+		string userChoiceUsername;
+		int userChoicePIN;
+		cout << "Enter someone you want to add:" << endl;
+		cout << "Username:" << endl;
+		cin >> userChoiceUsername;
+		cout << "PIN:" << endl;
+		cin >> userChoicePIN;
+		listOfUsers.createNewUser(userChoicePIN, userChoiceUsername);
+
+		listOfUsers.displayUsers();
+
+		listOfUsers.selectUser();
+
+
+//		bool loop = true;
+//		while(loop == true){
+//			int userOption;
+//			cout << "\nOptions:" << endl;
+//			cout << "1. Login" << endl;
+//			cout << "2. Exit Program" << endl;
+//			cout << "Select an option number: ";
+//			cin >> userOption;
+//			cout << endl;
+//			switch (userOption){
+//				case 1:{
+//					listOfUsers.login();
+//					break;
+//				}
+//
+//				case 2:{
+//					loop = false;
+//				}
+//			}
+//		}
 	}
 
 

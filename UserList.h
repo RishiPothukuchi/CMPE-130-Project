@@ -20,6 +20,10 @@ public:
     void checkExistingNodes();
     void createNewUser(int PIN, string username);
 
+    void selectUser();
+
+
+    void displayUsers();
 };
 
 #endif

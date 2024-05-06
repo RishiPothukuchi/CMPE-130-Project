@@ -13,10 +13,12 @@ void UserList::initializeUserFile(){
 	string entry_line;
     ifstream ifile;
     string userFileName;
-    cout << "Enter the file you want to initialize the list of users with: ";
+    cout << "Enter the file you want to initialize the list of users with: " << endl;
     cin >> userFileName;
+//    cout << userFileName << endl;
 
     ifile.open(userFileName);
+//    ifile.open("TestUsers.txt");
     if(ifile.fail()){
         cout << "File opening failed" << endl;
         exit(1);
@@ -84,12 +86,26 @@ void UserList::deleteUser(string username){
 }
 
 
+void UserList::displayUsers(){
+    UserListNode *current;
+    	current = head;
+    	while(current != nullptr){
+    		cout << "Username: " << current->getUsername() << "    PIN: " << current->getPIN() << endl;
+    		current = current->getNext();
+    	}
+    }
+
+
+
+
+
+
 void UserListNode::initializePasswordFile(){
 
 	string entry_line;
     ifstream ifile;
     string passwordFileName;
-    cout << "Enter the file you want to initialize the list of passwords with: ";
+    cout << "Enter the file you want to initialize the list of passwords with: " << endl;
     cin >> passwordFileName;
 
     ifile.open(passwordFileName);
@@ -117,14 +133,14 @@ void UserListNode::initializePasswordFile(){
 }
 
 
-int UserListNode::hashFunction(string password, int loopIdx, int arraySize){
+int UserListNode::hashFunction(string identifier, int indexVal, int arraySize){
 	int sum = 0;
-	for (char c : password) {
+	for (char c : identifier) {
 		sum += int(c);
 	}
 
-	int passwordIndex = ((sum + loopIdx) % arraySize);
-	return passwordIndex;
+	int newIndex = ((sum + indexVal) % arraySize);
+	return newIndex;
 }
 
 
@@ -132,14 +148,16 @@ void UserListNode::addPassword(string password, string identifier){
     int loadFactor = ((numOfElements/sizeOfList) * 100);
     if(loadFactor < 30){
     	bool open = false;
+    	int index = hashFunction(identifier, 0, sizeOfList);;
 		for(int i = 0; i < sizeOfList; i++){
-			int index = hashFunction(password, i, sizeOfList);
 			if((listOfPasswords[index].getIdentifier() == "Deleted")||(listOfPasswords[index].getIdentifier() == "")){
                 listOfPasswords[index] = Password(password, identifier);
                 numOfElements++;
                 open = true;
                 break;
 			}
+			index = ((index + 1) % sizeOfList);
+
 		}
 		if (!open) {
 			cout << "Error: Hash table is full but load factor is less than 30%." << endl;
@@ -150,11 +168,12 @@ void UserListNode::addPassword(string password, string identifier){
     	int newListSize = 2 * sizeOfList;
     	Password* newListOfPasswords = new Password[newListSize];
     	for (int i = 0; i < sizeOfList; i++) {
-    		int index = 0;
 			if ((listOfPasswords[i].getIdentifier() != "") && (listOfPasswords[i].getIdentifier() != "Deleted")){
-				index = hashFunction(listOfPasswords[i].getPassword(), i, newListSize);
+
+				int index = hashFunction(listOfPasswords[i].getIdentifier(), i, newListSize);
+
 				while (newListOfPasswords[index].getIdentifier() != "") {
-					index = (index + 1) % newListSize;
+					index = ((index + 1) % newListSize);
 				}
 				newListOfPasswords[index] = listOfPasswords[i];
 			}
@@ -168,8 +187,10 @@ void UserListNode::addPassword(string password, string identifier){
 
 void UserListNode::deletePassword(string password, string identifier){
 	bool passwordFound = false;
-	int i = 0;
-	int index = hashFunction(password, i, sizeOfList);
+//	int i = 0;
+
+	int index = hashFunction(identifier, 0, sizeOfList);
+
 	int counter = 0;
 	if(numOfElements > 0){
 		while ((counter < sizeOfList) && (passwordFound == false) && (listOfPasswords[index].getIdentifier() != "") && (listOfPasswords[index].getPassword() != "")){

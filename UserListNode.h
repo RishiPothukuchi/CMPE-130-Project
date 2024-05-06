@@ -20,7 +20,7 @@ public:
     UserListNode(int newPIN, string newUsername);
     UserListNode();
 
-    int hashFunction(string password, int loopIdx, int arraySize);
+    int hashFunction(string identifier, int loopIdx, int arraySize);
 
     void initializePasswordFile();
 
@@ -39,10 +39,11 @@ public:
 	UserListNode* getPrevious();
 	void setPrevious(UserListNode* prevUser);
 
-    friend void hash_Userfile(UserListNode* head, ifstream file);
+//    friend void hash_Userfile(UserListNode* head, ifstream file);
 
 
-	void displayPasswords();
+	void displayAllPasswords();
+	void displayPassword(string wantedIdentifier);
 
 };
 

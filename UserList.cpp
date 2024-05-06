@@ -46,6 +46,69 @@ void UserList::login(){
 }
 
 
+void UserList::selectUser(){
+	UserListNode *current;
+	current = head;
+
+	current = current->getNext();
+	current = current->getNext();
+	cout << "Username: " << current->getUsername() << "    PIN: " << current->getPIN() << endl;
+	current->initializePasswordFile();
+	bool done = true;
+	while(done == true){
+	int userChoice;
+	cout << "Pick an option." << endl;
+	cout << "1. Add password." << endl;
+	cout << "2. Delete password." << endl;
+	cout << "3. View All Passwords." << endl;
+	cout << "4. View Specific Password." << endl;
+	cin >> userChoice;
+
+		switch(userChoice){
+			case 1:{
+				string userAddWebsite, userAddPassword;
+				cout << "Enter the name of the website and the password." << endl;
+				cout << "Website Name:" << endl;
+				cin >> userAddWebsite;
+				cout << "Password:" << endl;
+				cin >> userAddPassword;
+
+				current->addPassword(userAddPassword, userAddWebsite);
+				break;
+			}
+			case 2:{
+				string userDeleteWebsite, userDeletePassword;
+				cout << "Enter the name of the website and the password." << endl;
+				cout << "Website Name:" << endl;
+				cin >> userDeleteWebsite;
+				cout << "Password:" << endl;
+				cin >> userDeletePassword;
+
+
+
+				current->deletePassword(userDeletePassword, userDeleteWebsite);
+				break;
+					}
+			case 3:{
+				current->displayAllPasswords();
+				break;
+				}
+			case 4:{
+				string userDisplayWebsite;
+				cout << "Enter the name of the website you want to see the password of" << endl;
+				cout << "Website Name:" << endl;
+				cin >> userDisplayWebsite;
+
+				current->displayPassword(userDisplayWebsite);
+				break;
+			}
+			case 5:{
+				done = false;
+				break;
+			}
+		}
+	}
+}
 
 
 void UserList::loginExistingUser(){
