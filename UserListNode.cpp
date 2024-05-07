@@ -167,7 +167,7 @@ void UserListNode::addPassword(string password, string identifier){
     	for (int i = 0; i < sizeOfList; i++) {
 			if ((listOfPasswords[i].getIdentifier() != "") && (listOfPasswords[i].getIdentifier() != "Deleted")){
 
-				int index = hashFunction(listOfPasswords[i].getIdentifier(), i, newListSize);
+				int index = hashFunction(listOfPasswords[i].getIdentifier(), 0, newListSize);
 
 				while (newListOfPasswords[index].getIdentifier() != "") {
 					index = ((index + 1) % newListSize);
