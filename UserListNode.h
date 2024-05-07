@@ -20,7 +20,7 @@ public:
     UserListNode(int newPIN, string newUsername);
     UserListNode();
 
-    int hashFunction(string identifier, int loopIdx, int arraySize);
+    int hashFunction(string identifier, int arraySize);
 
     string initializePasswordFile();
 

@@ -72,7 +72,7 @@ void UserListNode::displayAllIdentifiers() {
 
 void UserListNode::displayPassword(string wantedIdentifier) {
 	bool passwordFound = false;
-	int index = hashFunction(wantedIdentifier, 0, sizeOfList);
+	int index = hashFunction(wantedIdentifier, sizeOfList);
 
 	int counter = 0;
 	cout << endl;
@@ -133,13 +133,13 @@ string UserListNode::initializePasswordFile() {
 	return passwordFileName;
 }
 
-int UserListNode::hashFunction(string identifier, int indexVal, int arraySize) {
+int UserListNode::hashFunction(string identifier, int arraySize) {
 	int sum = 0;
 	for (char c : identifier) {
 		sum += int(c);
 	}
 
-	int newIndex = ((sum + indexVal) % arraySize);
+	int newIndex = ((sum ) % arraySize);
 	return newIndex;
 }
 
@@ -147,7 +147,7 @@ void UserListNode::addPassword(string password, string identifier) {
 	int loadFactor = ((numOfElements / sizeOfList) * 100);
 	if (loadFactor < 30) {
 		bool open = false;
-		int index = hashFunction(identifier, 0, sizeOfList);;
+		int index = hashFunction(identifier, sizeOfList);;
 		for (int i = 0; i < sizeOfList; i++) {
 			if ((listOfPasswords[index].getIdentifier() == "Deleted") || (listOfPasswords[index].getIdentifier() == "")) {
 				listOfPasswords[index] = Password(password, identifier);
@@ -169,7 +169,7 @@ void UserListNode::addPassword(string password, string identifier) {
 		for (int i = 0; i < sizeOfList; i++) {
 			if ((listOfPasswords[i].getIdentifier() != "") && (listOfPasswords[i].getIdentifier() != "Deleted")) {
 
-				int index = hashFunction(listOfPasswords[i].getIdentifier(), 0, newListSize);
+				int index = hashFunction(listOfPasswords[i].getIdentifier(), newListSize);
 
 				while (newListOfPasswords[index].getIdentifier() != "") {
 					index = ((index + 1) % newListSize);
@@ -186,7 +186,7 @@ void UserListNode::addPassword(string password, string identifier) {
 
 void UserListNode::deletePassword(string password, string identifier) {
 	bool passwordFound = false;
-	int index = hashFunction(identifier, 0, sizeOfList);
+	int index = hashFunction(identifier, sizeOfList);
 	int counter = 0;
 
 	if (numOfElements > 0) {
