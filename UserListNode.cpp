@@ -104,7 +104,7 @@ string UserListNode::initializePasswordFile() {
 	ifstream ifile;
 	string passwordFileName;
 	string key;
-	cout << "Enter the file you want to initialize the list of passwords with: " << endl;
+	cout << "Enter the file you want to store the list of passwords with: " << endl;
 	cin >> passwordFileName;
 
 	ifile.open(passwordFileName);
@@ -320,7 +320,7 @@ void UserListNode::encrypt_Passfile(string passFileName) {
 
 	for (int i = 0; i < sizeOfList; i++) {
 		if ((listOfPasswords[i].getIdentifier() != "") && (listOfPasswords[i].getIdentifier() != "Deleted") && (listOfPasswords[i].getPassword() != "") && (listOfPasswords[i].getPassword() != "Deleted")) {
-			ifile << encrypt_Web(listOfPasswords[i].getIdentifier(), key) << "," << encrypt_Pass(listOfPasswords[i].getPassword(), key) << endl;
+			ifile << encrypt_Pass(listOfPasswords[i].getPassword(), key) << "," << encrypt_Web(listOfPasswords[i].getIdentifier(), key) << endl;
 		}
 	}
 
