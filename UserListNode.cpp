@@ -121,12 +121,12 @@ string UserListNode::initializePasswordFile() {
 		stringstream substr(entry_line);
 
 		getline(substr, info_password, ',');
+
 		getline(substr, info_identifier);
 		string adjusted_identifier;
-		int levelSpaceLoc = info_identifier.find(' ');
+		int levelSpaceLoc = info_identifier.find(',');
 		adjusted_identifier = info_identifier.substr(levelSpaceLoc + 1);
-		addPassword(info_password, adjusted_identifier);
-		//addPassword(decrypt_Pass(info_password, key), decrypt_Web(info_identifier, key));
+		addPassword(decrypt_Pass(info_password, key), decrypt_Web(adjusted_identifier, key));
 	}
 
 	ifile.close();

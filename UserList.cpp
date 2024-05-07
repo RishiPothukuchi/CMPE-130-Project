@@ -179,10 +179,13 @@ void UserList::initializeUserFile() {
         stringstream substr(entry_line);
 
         getline(substr, info_PIN, ',');
-        int converted_id = stoi(decrypt_PIN(info_PIN));
+        int converted_PIN = stoi(decrypt_PIN(info_PIN));
 
         getline(substr, info_username);
-        createNewUser(converted_id, decrypt_User(info_username, key));
+        string adj_User;
+        int Loc = info_username.find(',');
+        adj_User = info_username.substr(Loc + 1);
+        createNewUser(converted_PIN, decrypt_User(adj_User, key));
     }
     ifile.close();
 }
