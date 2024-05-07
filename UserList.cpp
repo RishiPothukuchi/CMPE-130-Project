@@ -37,6 +37,8 @@ void UserList::login() {
                 cin >> newUsername;
                 if (checkUser(newUsername, newPIN) == false) {
                     createNewUser(newPIN, newUsername);
+                    cout << "Please Login..." << endl;
+                    loginExistingUser();
                     validChoice = true;
                 }
                 else {
