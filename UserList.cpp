@@ -1,16 +1,16 @@
 #include <iostream>
-#include <algorithm>
 #include <cctype>
 #include <fstream>
+#include <algorithm>
+#include <sstream>
 #include "UserList.h"
 using namespace std;
 
-UserList::UserList(){
+UserList::UserList() {
     head = nullptr;
     tail = nullptr;
     PassArray = nullptr;
 }
-
 
 void UserList::login(){
 	initializeUserFile();
@@ -139,6 +139,128 @@ bool UserList::checkUser(string username, int pin){
     return false;
 }
 
-void UserList::checkExistingNodes(){
+void UserList::initializeUserFile(){
+	string entry_line;
+    ifstream ifile;
+    string userFileName;
+    cout << "Enter the file you want to initialize the list of users with: " << endl;
+    cin >> userFileName;
+//    cout << userFileName << endl;
 
+    ifile.open(userFileName);
+//    ifile.open("TestUsers.txt");
+    if(ifile.fail()){
+        cout << "File opening failed" << endl;
+        exit(1);
+    }
+
+    while(getline(ifile, entry_line)){
+    		string info_PIN, info_username;
+    		stringstream substr(entry_line);
+
+    		getline(substr, info_PIN, ',');
+    		int converted_id = stoi(info_PIN);
+
+    		getline(substr, info_username);
+
+
+    		string adjusted_level;
+
+    		int levelSpaceLoc = info_username.find(' ');
+    		adjusted_level = info_username.substr(levelSpaceLoc + 1);
+    		createNewUser(converted_id, adjusted_level);
+    	}
+
+    ifile.close();
+}
+
+void UserList::createNewUser(int PIN, string username){
+	UserListNode *newUser;
+	UserListNode *userPtr;
+
+	newUser = new UserListNode(PIN, username);
+	if(head == nullptr || PIN < head->getPIN()){
+		newUser->setNext(head);
+		if (head != nullptr) {
+			head->setPrevious(newUser);
+		}
+		head = newUser;
+	}
+	else {
+		userPtr = head;
+		while (userPtr->getNext() != nullptr && userPtr->getNext()->getPIN() < PIN) {
+			userPtr = userPtr->getNext();
+		}
+
+		newUser->setNext(userPtr->getNext());
+		if (userPtr->getNext() != nullptr) {
+			userPtr->getNext()->setPrevious(newUser);
+		}
+		userPtr->setNext(newUser);
+		newUser->setPrevious(userPtr);
+	}
+
+}
+
+void UserList::deleteUser(string username){
+    UserListNode* current = head;
+
+    while(current->getUsername() != username){
+        current = current->getNext();
+    }
+
+    current->getPrevious()->setNext(current->getNext());
+    current->getNext()->setPrevious(current->getPrevious());
+
+    delete current;
+}
+
+
+void UserList::displayUsers(){
+    UserListNode *current;
+    	current = head;
+    	while(current != nullptr){
+    		cout << "Username: " << current->getUsername() << "    PIN: " << current->getPIN() << endl;
+    		current = current->getNext();
+    	}
+    }
+
+//Encryption
+string UserList::encrypt_User(string input){
+    string temp = "";
+    for (int i = 0; i < input.length(); i++)
+    {   
+        temp += char((int(input[i] + 110) % 95) + 33); //
+    }
+    cout << "Username Input: " << input << endl;
+    cout << "Hashed Username Value:" << temp << endl;
+    return temp;
+}
+
+string UserList::encrypt_PIN(int input){
+    string temp = "";
+    string strPIN = to_string(input);
+    for (int i = 0; i < strPIN.length(); i++)
+    {   
+        temp += char((int(strPIN[i] + 110) % 95) + 33);
+    }
+    cout << "PIN Input: " << input << endl;
+    cout << "Hashed PIN Value:" << temp << endl;
+    return temp;
+}
+
+void UserList::encrypt_Userfile(string fileName){
+
+    fstream ifile;
+    ifile.open(fileName);
+    if(ifile.fail()){
+        cout << "File opening failed" << endl;
+        exit(1);
+    }
+
+    UserListNode* current = head;
+    while(current != nullptr){
+        ifile << encrypt_User(current->getUsername()) << "," << encrypt_PIN(current->getPIN()) << endl;
+        current = current->getNext();
+    }
 }

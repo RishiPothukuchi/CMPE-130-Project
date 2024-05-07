@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
-#include "encrypt.h"
 #include "UserList.h"
+#include "Password.h"
 using namespace std;
 
 // void passwordMgr();
