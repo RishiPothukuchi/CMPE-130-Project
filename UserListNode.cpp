@@ -55,6 +55,7 @@ void UserListNode::setPrevious(UserListNode* prevUser){
 	previous = prevUser;
 }
 
+
 void UserListNode::displayPasswords(){
 	for(int i = 0; i < sizeOfList; i++){
 		if((listOfPasswords[i].getIdentifier() != "") && (listOfPasswords[i].getIdentifier() != "Deleted") && (listOfPasswords[i].getPassword() != "")

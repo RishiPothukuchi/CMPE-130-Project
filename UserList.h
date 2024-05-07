@@ -10,15 +10,20 @@ private:
     UserListNode *head;
     UserListNode *tail;
     int *PassArray;
-
+    
 public:
     UserList();
     void initializeUserFile();
     void login();
     void deleteUser(string username);
-    void loginExistingUser();
-    void checkExistingNodes();
+    //void loginExistingUser();
+    //void checkExistingNodes();
     void createNewUser(int PIN, string username);
+
+    //User Encryption
+    string encrypt_User(string input);
+    string encrypt_PIN(int input);
+    void encrypt_Userfile(string fileName);
 
 };
 

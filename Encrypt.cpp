@@ -2,14 +2,30 @@
 #include <fstream>
 #include <math.h>
 #include <string>
-//#include <cryptopp/sha.h>
-
-#include "Encrypt.h"
-#include "UserListNode.h"
+#include "UserList.h"
 using namespace std;
 
+string UserList::encrypt_User(string input){
+    string temp = "";
+    for (int i = 0; i < input.length(); i++)
+    {   
+        temp += char((int(input[i] + 110) % 95) + 33); //
+    }
+    cout << "Username Input: " << input << endl;
+    cout << "Hashed Username Value:" << temp << endl;
+    return temp;
+}
+
+string encrypt_User_Key(string input){
+    string temp = "";
+    for (int i = 0; i < input.length(); i++)
+    {   
+        temp += (int(input[i]*1300) % 94) + 33;
+    }
+    return temp;
+}
+
 string encrypt_PIN(int input){
-    //temp hasing funtion, simply return the function for final iteration
     string temp = "";
     string strPIN = to_string(input);
     for (int i = 0; i < strPIN.length(); i++)
@@ -46,53 +62,37 @@ string encrypt_Web(string web){
     return temp;
 }
 
-/*
-void encrypt_Userfile(UserListNode* userHead, ifstream file){
-    //read linked list
-    UserListNode* current = head;
-    while(current->next != nullptr){
+//Make a member of userlist.h so i can get head directly
+void UserList::encrypt_Userfile(string fileName){
 
+    fstream ifile;
+    ifile.open(fileName);
+    if(ifile.fail()){
+        cout << "File opening failed" << endl;
+        exit(1);
+    }
+
+    UserListNode* current = head;
+    while(current != nullptr){
+        ifile << encrypt_User(current->getUsername()) << "," << encrypt_PIN(current->getPIN()) << endl;
+        current = current->getNext();
     }
 }
 
-void encrypt_Passfile(PassListNode* passHead, string passFileName){
+void UserListNode::encrypt_Passfile(Password* passHead, string passFileName){
+    
     fstream ifile;
-    string tempWeb = "";
-    string hTempWeb = "";
-    string tempPass = "";
-    string hTempPass = "";
-
     ifile.open(passFileName);
     if(ifile.fail()){
         cout << "File opening failed" << endl;
         exit(1); 
     }
-    
-    PassListNode* current = passHead 
-    while (current->next != nullptr){
-        tempWeb = current->getWeb();
-        hash_Web(tempWeb); // Add hash website function
-        
-        tempPass = current->getPass();
-        hash_Pass(tempPass);
 
-        ifile << hTempWeb << "," << hTempPass << endl;
+    for(int i = 0; i < sizeOfList; i++){
+        if((listOfPasswords[i].getIdentifier() != "") && (listOfPasswords[i].getIdentifier() != "Deleted") 
+        && (listOfPasswords[i].getPassword() != "") && (listOfPasswords[i].getPassword() != "Deleted")){
+        ifile << encrypt_Web(listOfPasswords[i].getIdentifier()) << "," << encrypt_Pass(listOfPasswords[i].getPassword(), encrypt_PIN(PIN)) << endl;
     }
 
     ifile.close();
-}
-*/
-
-//temp test for writing to file
-void encrypt_Passfile(string web, string pass, int PIN, string outputFile){ 
-    ofstream file(outputFile);
-    string hashed_pin = encrypt_PIN(PIN);
-    string temp_web = "";
-    string temp_pass = "";
-
-    temp_web = encrypt_Web(web); // Add hash website function
-    temp_pass = encrypt_Pass(pass, hashed_pin);
-
-    file << temp_web << "," << temp_pass << endl;
-    file.close();
 }

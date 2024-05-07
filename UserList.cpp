@@ -14,6 +14,8 @@ UserList::UserList(){
 
 void UserList::login(){
     bool validChoice = false;
+    int tempPIN;
+    string tempUsername;
     while (validChoice == false){
         string userStringChoice;
         cout << "Are you a new or already existing user: " << endl;
@@ -27,31 +29,22 @@ void UserList::login(){
 
         if(userStringChoice == "New"){
             validChoice = true;
-            int newPIN;
-            string newUsername;
             cout << "Please Provide a PIN:";
-            cin >> newPIN;
+            cin >> tempPIN;
             cout << "Please Provide a Username:";
-            cin >> newUsername;
-            createNewUser(newPIN, newUsername);
+            cin >> tempUsername;
+            createNewUser(tempPIN, tempUsername);
         }
         else if(userStringChoice == "Existing"){
             validChoice = true;            
-            loginExistingUser();
+            cout << "Please Provide a PIN:";
+            cin >> tempPIN;
+            cout << "Please Provide a Username:";
+            cin >> tempUsername;
+            //loginExistingUser();
         }
         else{
             cout << "Invalid Response, Please Try Again" << endl;
         }
     }
-}
-
-
-
-
-void UserList::loginExistingUser(){
-
-}
-
-void UserList::checkExistingNodes(){
-
 }
