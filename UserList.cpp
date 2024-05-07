@@ -13,6 +13,7 @@ UserList::UserList(){
 
 
 void UserList::login(){
+	initializeUserFile();
     bool validChoice = false;
     while (validChoice == false){
         string userStringChoice;
@@ -50,9 +51,9 @@ void UserList::selectUser(){
 	UserListNode *current;
 	current = head;
 
-	current = current->getNext();
-	current = current->getNext();
-	cout << "Username: " << current->getUsername() << "    PIN: " << current->getPIN() << endl;
+//	current = current->getNext();
+//	current = current->getNext();
+//	cout << "Username: " << current->getUsername() << "    PIN: " << current->getPIN() << endl;
 	current->initializePasswordFile();
 	bool done = true;
 	while(done == true){
@@ -120,11 +121,12 @@ void UserList::loginExistingUser(){
     cin >> pin;
     if(checkUser(username, pin)){
         cout << "Login successful!" << endl;
+        selectUser();
     } else {
         cout << "Invalid username or PIN." << endl;
+        loginExistingUser();
     }
 }
-
 
 bool UserList::checkUser(string username, int pin){
     UserListNode *current = head;
@@ -136,7 +138,6 @@ bool UserList::checkUser(string username, int pin){
     }
     return false;
 }
-
 
 void UserList::checkExistingNodes(){
 
