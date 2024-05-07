@@ -41,12 +41,16 @@ public:
 
 //    friend void hash_Userfile(UserListNode* head, ifstream file);
 
-    //Encryption
-    string encrypt_Pass(string pass);
-    string encrypt_Web(string web);
-    void encrypt_Passfile(Password* passHead, string passFileName);
 
-	void displayAllPasswords();
+	//Encryption
+	    string encrypt_Pass(string pass);
+	    string encrypt_Web(string web);
+	    void encrypt_Passfile(Password* passHead, string passFileName);
+
+		void displayAllPasswords();
+		void displayPassword(string wantedIdentifier);
+
+	void displayAllIdentifiers();
 	void displayPassword(string wantedIdentifier);
 
 };

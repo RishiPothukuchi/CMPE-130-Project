@@ -59,25 +59,25 @@ void UserListNode::setPrevious(UserListNode* prevUser){
 	previous = prevUser;
 }
 
-void UserListNode::displayAllPasswords(){
+void UserListNode::displayAllIdentifiers(){
 	for(int i = 0; i < sizeOfList; i++){
 		if((listOfPasswords[i].getIdentifier() != "") && (listOfPasswords[i].getIdentifier() != "Deleted") && (listOfPasswords[i].getPassword() != "")
 				&& (listOfPasswords[i].getPassword() != "Deleted")){
-			cout << "Website: " << listOfPasswords[i].getIdentifier() << "  =>   Password: " << listOfPasswords[i].getPassword() << endl;
+			cout << "Website: " << listOfPasswords[i].getIdentifier() << endl;
 		}
 	}
 }
 
 void UserListNode::displayPassword(string wantedIdentifier){
 	bool passwordFound = false;
-//		int i = 0;
 		int index = hashFunction(wantedIdentifier, 0, sizeOfList);
 
 		int counter = 0;
+		cout << endl;
 		if(numOfElements > 0){
 			while ((counter < sizeOfList) && (passwordFound == false) && (listOfPasswords[index].getIdentifier() != "") && (listOfPasswords[index].getPassword() != "")){
 				if ((listOfPasswords[index].getIdentifier() == wantedIdentifier)) {
-					cout << "Website: " << listOfPasswords[index].getIdentifier() << "  =>   Password: " << listOfPasswords[index].getPassword() << endl;;
+					cout << "Website: " << listOfPasswords[index].getIdentifier() << "  =>   Password: " << listOfPasswords[index].getPassword() << endl;
 					passwordFound = true;
 					return;
 				}
@@ -87,7 +87,7 @@ void UserListNode::displayPassword(string wantedIdentifier){
 				}
 			}
 			if (!passwordFound) {
-				cout << " Password for Website: " << wantedIdentifier << " Cannot be found." << endl;
+				cout << "Password for Website: " << wantedIdentifier << " Cannot be found." << endl;
 			}
 		}
 		else{
@@ -95,11 +95,13 @@ void UserListNode::displayPassword(string wantedIdentifier){
 		}
 }
 
+
 void UserListNode::initializePasswordFile(){
 
 	string entry_line;
     ifstream ifile;
     string passwordFileName;
+	cout << endl;
     cout << "Enter the file you want to initialize the list of passwords with: " << endl;
     cin >> passwordFileName;
 
@@ -182,6 +184,7 @@ void UserListNode::addPassword(string password, string identifier){
 
 void UserListNode::deletePassword(string password, string identifier){
 	bool passwordFound = false;
+//	int i = 0;
 
 	int index = hashFunction(identifier, 0, sizeOfList);
 
@@ -206,6 +209,8 @@ void UserListNode::deletePassword(string password, string identifier){
 		cout << "There are no passwords to delete" << endl;
 	}
 }
+
+
 
 //Encryption
 string UserListNode::encrypt_Pass(string pass){
@@ -232,16 +237,16 @@ string UserListNode::encrypt_Web(string web){
 
 
 void UserListNode::encrypt_Passfile(Password* passHead, string passFileName){
-    
+
     fstream ifile;
     ifile.open(passFileName);
     if(ifile.fail()){
         cout << "File opening failed" << endl;
-        exit(1); 
+        exit(1);
     }
 
     for(int i = 0; i < sizeOfList; i++){
-        if((listOfPasswords[i].getIdentifier() != "") && (listOfPasswords[i].getIdentifier() != "Deleted") 
+        if((listOfPasswords[i].getIdentifier() != "") && (listOfPasswords[i].getIdentifier() != "Deleted")
         && (listOfPasswords[i].getPassword() != "") && (listOfPasswords[i].getPassword() != "Deleted")){
         ifile << encrypt_Web(listOfPasswords[i].getIdentifier()) << "," << encrypt_Pass(listOfPasswords[i].getPassword()) << endl;
     }
