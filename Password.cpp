@@ -4,29 +4,29 @@
 using namespace std;
 
 
-Password::Password(string newPassword, string newIdentifier){
+Password::Password(string newPassword, string newIdentifier) {
 	password = newPassword;
 	identifier = newIdentifier;
 }
 
-Password::Password(){
+Password::Password() {
 	password = "";
 	identifier = "";
 }
 
-string Password::getPassword(){
+string Password::getPassword() {
 	return password;
 }
 
-string Password::getIdentifier(){
+string Password::getIdentifier() {
 	return identifier;
 }
 
-void Password::setPassword(string passwordVal){
+void Password::setPassword(string passwordVal) {
 	password = passwordVal;
 
 }
 
-void Password::setIdentifier(string identifierVal){
+void Password::setIdentifier(string identifierVal) {
 	identifier = identifierVal;
 }

@@ -5,11 +5,11 @@
 #include "UserListNode.h"
 using namespace std;
 
-class UserList{
+class UserList {
 private:
-    UserListNode *head;
-    UserListNode *tail;
-    int *PassArray;
+    UserListNode* head;
+    UserListNode* tail;
+    int* PassArray;
 
 public:
     UserList();
@@ -22,13 +22,19 @@ public:
     bool checkUser(string username, int pin);
     void selectUser(string username, int pin);
 
-    //Encryption
-        string encrypt_User(string input);
-        string encrypt_PIN(int input);
-        void encrypt_Userfile(string file);
+    //Decryption
+    string decrypt_User(string input, string key);
+    string decrypt_PIN(string input);
 
+    //Encryption
+    string encrypt_User(string input, string key);
+    string encrypt_PIN(int input);
+    void encrypt_Userfile(string fileName);
 
     void displayUsers();
+
+    void deleteUserList();
 };
 
 #endif
+#pragma once

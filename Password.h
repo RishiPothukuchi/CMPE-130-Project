@@ -7,7 +7,7 @@
 using namespace std;
 
 
-class Password{
+class Password {
 private:
 	string password;
 	string identifier;
