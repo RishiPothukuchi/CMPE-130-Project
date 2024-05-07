@@ -1,5 +1,5 @@
 #include <iostream>
-#include <algorithm>
+//#include <algorithm>
 #include <sstream>
 #include <cctype>
 #include <fstream>
@@ -24,9 +24,6 @@ void UserList::login(){
         cout << "- Existing" << endl;
         cout << "Choice: ";
         cin >> userStringChoice;
-
-        transform(userStringChoice.begin(), userStringChoice.end(), userStringChoice.begin(), [](unsigned char c){ return std::tolower(c); });
-        userStringChoice[0] = toupper(userStringChoice[0]); 
 
         if(userStringChoice == "New"){
             validChoice = false;

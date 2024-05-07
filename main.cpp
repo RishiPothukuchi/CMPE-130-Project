@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include "encrypt.h"
 #include "UserList.h"
 using namespace std;
 

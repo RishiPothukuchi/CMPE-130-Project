@@ -252,4 +252,5 @@ void UserListNode::encrypt_Passfile(Password* passHead, string passFileName){
     }
 
     ifile.close();
+    }
 }
