@@ -19,7 +19,7 @@ public:
     void loginExistingUser();
     void checkExistingNodes();
     void createNewUser(int PIN, string username);
-
+    bool checkUser(string username, int pin);
     void selectUser();
 
 

@@ -112,8 +112,31 @@ void UserList::selectUser(){
 
 
 void UserList::loginExistingUser(){
-
+    string username;
+    int pin;
+    cout << "Enter your username: ";
+    cin >> username;
+    cout << "Enter your PIN: ";
+    cin >> pin;
+    if(checkUser(username, pin)){
+        cout << "Login successful!" << endl;
+    } else {
+        cout << "Invalid username or PIN." << endl;
+    }
 }
+
+
+bool UserList::checkUser(string username, int pin){
+    UserListNode *current = head;
+    while(current != nullptr){
+        if(current->getUsername() == username && current->getPIN() == pin){
+            return true;
+        }
+        current = current->getNext();
+    }
+    return false;
+}
+
 
 void UserList::checkExistingNodes(){
 
